@@ -809,26 +809,3 @@ if __name__ == "__main__":
 
 
 
-    '''fm.json_dump("C:/Users/kira/PyCharmMiscProject/json_test.json", {
-    "name": "Иван Иванов",
-    "age": 30,
-    "email": "ivan@example.com",
-    "roles": "user"
-})
-    #s = fm.directory("C:/Users/", "cd")
-    #fm.directory(s, "dir")
-    #fm.copy("C:/Users/kira/PyCharmMiscProject/json_test.json", "C:/Users/kira/PyCharmMiscProject/qe/")
-    #fm.move("C:/Users/kira/PyCharmMiscProject/qe/json_test.json", "C:/Users/kira/PyCharmMiscProject/")
-    #fm.update_file("C:/Users/kira/PyCharmMiscProject/task.txt", "tegs")
-    #fm.zip_unpack("C:/Users/kira/PyCharmMiscProject/arcive.zip", "C:/Users/kira/PyCharmMiscProject/")
-    #fm.json_parse("C:/Users/kira/PyCharmMiscProject/json_test.json")
-    #fm.zip_create("C:/Users/kira/PyCharmMiscProject/qe", "C:/Users/kira/PyCharmMiscProject/arcive.zip")
-    #fm.xml_parse("C:/Users/kira/PyCharmMiscProject/xml_test.xml")
-    #fm.create_file("C:/Users/kira/PyCharmMiscProject/qe/task1.txt", "meowwwefeff")
-    #fm.delete_file("C:/Users/kira/PyCharmMiscProject/file_manager.db")
-    #fm.read_file("C:/Users/kira/PyCharmMiscProject/file_manager.db")
-    #fm.parts_disk()
-
-
-
-#DatabaseManager().shows("dotka")'''
