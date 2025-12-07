@@ -19,7 +19,7 @@ import threading
 import subprocess
 from traceback import print_exc
 
-
+# Получение пути с базой данных ( для Pyinstaller ) 
 def get_database_path():
     if getattr(sys, 'frozen', False):
         base_path = Path(sys.executable).parent
@@ -29,7 +29,7 @@ def get_database_path():
     db_path = base_path / "file_manager.db"
     print(f"Путь к базе данных: {db_path}")
     return str(db_path)
-
+"""Создание БД """
 class DatabaseManager:
     def __init__(self, db_path=None):
         if db_path is None:
@@ -92,7 +92,8 @@ class DatabaseManager:
 
             conn.commit()
 
-
+    """Создание пользователей и выдача ролей ( прав ) 
+    дефолтный юзер и админ, а также аутентификация"""
     def create_user(self, username, password):
         password_hash = hashlib.sha256(password.encode()).hexdigest()
         if len(password) < 1:
@@ -148,6 +149,7 @@ class DatabaseManager:
         except Exception as e:
             print(f"Ошибка 1 {e}")
             return False
+    """Выдача прав в БД"""
     def set_perm(self, file_path, username, read_perm, write_perm, delete_perm):
         try:
             with self.get_connection() as conn:
@@ -238,7 +240,7 @@ class DatabaseManager:
             cursor.execute("SELECT * FROM Users")
             res = cursor.fetchall()
             return res
-
+# Защита от уязвимости Path traversal
 def path_traversal(user_input):
     base = Path("C:/Users").resolve()
     user_path = Path(user_input)
@@ -261,6 +263,7 @@ schema = {
     "required": ["name"],
     "additionalProperties": False
 }
+# Санитизация 
 def validate_json(json_string, schema):
     max_size = 1024*1024
     try:
@@ -295,7 +298,7 @@ def safe_processes(state):
         return lock.acquire()
     elif state == "end":
         return lock.release()
-
+# Основной класс с функциями файлового менеджера 
 class FileManager:
     def __init__(self):
         self.db = DatabaseManager()
@@ -626,6 +629,7 @@ class FileManager:
                 return False
         else:
             return False, "Вы не являетесь админом"
+# Интерактивное взаимодействие с пользователем 
 def start_menu():
     subprocess.run(f'cd /d "C:/Users"', shell=True, check=True)
     print("\n\nДопустимые команды")
@@ -806,6 +810,7 @@ def main():
 if __name__ == "__main__":
     main()
     input()
+
 
 
 
